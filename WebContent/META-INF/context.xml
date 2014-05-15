@@ -1,0 +1,12 @@
+<Context>
+     <Resource name="jdbc/MySQL"
+         auth="Container"
+         type="javax.sql.DataSource"
+         username="bbs"
+         password="bbspw"
+         driverClassName="com.mysql.jdbc.Driver"
+         url="jdbc:mysql://192.168.1.74:3306/BBS"
+         accessToUnderlyingConnectionAllowed = "true"
+         maxActive="50"
+         maxIdle="10"/>
+</Context>
