@@ -28,7 +28,7 @@ public abstract class BbsAction {
             ds = (DataSource) init.lookup("java:comp/env/jdbc/MySQL");
             conn = ds.getConnection();
         }catch(Exception ex){
-            System.out.println("error：" + ex);
+            System.out.println("error: " + ex);
             return;
         }
     }

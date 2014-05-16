@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="UTF-8"%>
-<%@ page import="BBS.Beans.BbsContentBean" %>
+<%@ page import="BBS.Beans.PostBean" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
 
 <%
-	Map<String,BbsContentBean> modelMap = (Map<String,BbsContentBean>)request.getAttribute("modelMap");
-
-
-	List<BbsContentBean> sampleList=(List<BbsContentBean>)modelMap.get("bbsSample");
+    Map<String,PostBean> modelMap = (Map<String,PostBean>)request.getAttribute("modelMap");
+	String bbsName = (String)request.getAttribute("BBS");
+	List<PostBean> postList=(List<PostBean>)modelMap.get(bbsName);
 %>
 
 
@@ -21,8 +20,8 @@
 <body>
 	View Sample<br>
 	<%
-		for(int i=0;i<sampleList.size();i++){
-			BbsContentBean content = (BbsContentBean)sampleList.get(i);
+	    for(int i=0;i<postList.size();i++){
+					PostBean content = (PostBean)postList.get(i);
 	%>
 		listno : <%= content.getContentNumber() %><br>
 		userid : <%= content.getUserId() %><br>
