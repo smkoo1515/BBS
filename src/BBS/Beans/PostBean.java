@@ -7,7 +7,7 @@ public class PostBean  {
     private String userId;
     private String title;
     private String content;
-    private String writedate;
+    private String writeDate;
     private int readCount;
     private int recommandCount;
     private int userNumber;
@@ -62,11 +62,11 @@ public class PostBean  {
     public void setUserNumber(int userNumber) {
         this.userNumber = userNumber;
     }
-    public String getWritedate() {
-        return writedate;
+    public String getWriteDate() {
+        return writeDate;
     }
-    public void setWritedate(String writedate) {
-        this.writedate = writedate;
+    public void setWriteDate(String writeDate) {
+        this.writeDate = writeDate;
     }
     public String getDeleteFlag() {
         return deleteFlag;

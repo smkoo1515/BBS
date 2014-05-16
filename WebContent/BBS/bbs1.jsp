@@ -5,9 +5,10 @@
 <%@ page import="java.util.Map" %>
 
 <%
-    Map<String,PostBean> modelMap = (Map<String,PostBean>)request.getAttribute("modelMap");
-	String bbsName = (String)request.getAttribute("BBS");
-	List<PostBean> postList=(List<PostBean>)modelMap.get(bbsName);
+  Map<String,PostBean> modelMap = (Map<String,PostBean>)request.getAttribute("modelMap");
+  String bbsName = request.getParameter("BBS");
+  List<PostBean> postList=(List<PostBean>)modelMap.get(bbsName);
+  int postPerPage = 15;
 %>
 
 
@@ -15,20 +16,34 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>View Sample</title>
+<title><%= bbsName %></title>
 </head>
 <body>
-	View Sample<br>
-	<%
-	    for(int i=0;i<postList.size();i++){
-					PostBean content = (PostBean)postList.get(i);
-	%>
-		listno : <%= content.getContentNumber() %><br>
-		userid : <%= content.getUserId() %><br>
-		contentno : <%= content.getContentNumber() %><br>
-		<br>
-	<%
-		}
-	%>
+  <div>PostNumber</div>
+  <div>Title</div>
+  <div>userName</div>
+  <div>ReadCount</div>
+  <div>WriteDate</div>
+  <br>
+  <%
+  	int postCnt;
+  	if(postList.size()<postPerPage){
+  	    postCnt = postList.size();
+  	}else{
+  	    postCnt = postPerPage;
+  	}
+    for(int i=0;i<postCnt;i++){
+      PostBean content = (PostBean)postList.get(i);
+  %>
+  <div><%= content.getPostNumber() %></div>
+  <div><%= content.getTitle() %></div>
+  <div><%= content.getUserName() %></div>
+  <div><%= content.getReadCount() %></div>
+  <div><%= content.getWriteDate() %></div>
+  <br>
+  <%
+    }
+  %>
+
 </body>
 </html>

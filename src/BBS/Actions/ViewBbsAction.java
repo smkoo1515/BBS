@@ -44,7 +44,7 @@ public class ViewBbsAction extends BbsAction {
                 postBean.setUserName(rs.getString("username"));
                 postBean.setTitle(rs.getString("title"));
                 postBean.setContent(rs.getString("content"));
-                postBean.setWritedate(rs.getString("writedate"));
+                postBean.setWriteDate(rs.getString("writedate"));
                 postBean.setReadCount(Integer.parseInt(rs.getString("readcount")));
                 postBean.setRecommandCount(Integer.parseInt(rs.getString("recommand")));
                 postBean.setDeleteFlag(rs.getString("delflg"));
