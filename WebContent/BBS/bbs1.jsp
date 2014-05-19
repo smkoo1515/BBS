@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="BBS.Beans.PostBean" %>
 <%@ page import="java.util.List" %>
@@ -8,7 +8,10 @@
   Map<String,PostBean> modelMap = (Map<String,PostBean>)request.getAttribute("modelMap");
   String bbsName = request.getParameter("BBS");
   List<PostBean> postList=(List<PostBean>)modelMap.get(bbsName);
-  //int pages = Integer.parseInt(request.getParameter("PAGE"));
+  String pageStr = request.getParameter("PAGE");
+  if(pageStr != null){
+      Integer pages = Integer.parseInt(pageStr);
+  }
   Integer postPerPage = (Integer)request.getAttribute("postPerPage");
 %>
 

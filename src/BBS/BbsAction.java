@@ -3,7 +3,10 @@ package BBS;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -18,6 +21,8 @@ public abstract class BbsAction {
     private Connection conn = null;
     private PreparedStatement pstmt = null;
     private ResultSet rs = null;
+
+    private ArrayList<HashMap<String, String>> result;
 
     public abstract BbsView doServiceWith(HttpServletRequest req);
 
@@ -34,16 +39,45 @@ public abstract class BbsAction {
         }
     }
 
-    protected ResultSet executeQuery(String query){
+    protected ResultSet executeQuery(String query) throws SQLException{
         if(conn != null){
             try {
                 pstmt = conn.prepareStatement(query);
                 rs = pstmt.executeQuery();
+                result = resultSetToArrayList(rs);
+
             } catch (SQLException e) {
                 // TODO 自動生成された catch ブロック
                 e.printStackTrace();
+            } finally{
+                if(rs != null){rs.close();}
+                if(pstmt != null){pstmt.close();}
             }
         }
         return rs;
+    }
+
+    protected ArrayList<HashMap<String, String>> getResult(){
+        return result;
+    }
+
+    private ArrayList<HashMap<String, String>> resultSetToArrayList(ResultSet rs) throws SQLException{
+        ResultSetMetaData metaData = rs.getMetaData();
+        int columnCnt = metaData.getColumnCount();
+        String[] columnName = new String[metaData.getColumnCount()];
+
+        for(int i = 0; i < columnCnt; i++){
+            columnName[i] = metaData.getColumnName(i + 1);
+        }
+        ArrayList<HashMap<String, String>> resultList = new ArrayList<HashMap<String, String>>();
+        HashMap<String, String> resultMap;
+        while(rs.next()){
+            resultMap = new HashMap<String, String>();
+            for(int i = 0; i < columnCnt; i++){
+                resultMap.put(columnName[i], rs.getString(columnName[i]));
+            }
+            resultList.add(resultMap);
+        }
+        return resultList;
     }
 }
