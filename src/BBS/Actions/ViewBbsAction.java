@@ -1,5 +1,6 @@
 package BBS.Actions;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,9 +15,12 @@ import BBS.Beans.PostBean;
 
 public class ViewBbsAction extends BbsAction {
 
+    private int postPerPage = 5;
+
     @Override
     public BbsView doServiceWith(HttpServletRequest req) {
         String bbsName = req.getParameter("BBS");
+        req.setAttribute("postPerPage", postPerPage);
         List<PostBean> postList = selectPostList(bbsName);
         if(postList != null){
             BbsView view = new BbsView();
@@ -30,12 +34,10 @@ public class ViewBbsAction extends BbsAction {
     }
 
     private List<PostBean> selectPostList(String bbsName) {
-        String tmpSql = "select * from " + bbsName;
+        String tmpSql = "select * from " + bbsName + " order by postno desc limit " + postPerPage;
         List<PostBean> postList = new ArrayList<PostBean>();
         try{
-            conn = ds.getConnection();
-            pstmt = conn.prepareStatement(tmpSql);
-            rs = pstmt.executeQuery();
+            ResultSet rs = executeQuery(tmpSql);
 
             while(rs.next()){
                 PostBean postBean=new PostBean();
@@ -57,11 +59,6 @@ public class ViewBbsAction extends BbsAction {
             System.out.println("SQLException: " + sqex.getMessage());
             System.out.println("SQLState: " + sqex.getSQLState());
         }
-        finally{
-            if(rs!=null) try{rs.close();}catch(SQLException sqex){}
-            if(pstmt!=null) try{pstmt.close();}catch(SQLException sqex){}
-        }
-
         return null;
     }
 }

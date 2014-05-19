@@ -8,7 +8,8 @@
   Map<String,PostBean> modelMap = (Map<String,PostBean>)request.getAttribute("modelMap");
   String bbsName = request.getParameter("BBS");
   List<PostBean> postList=(List<PostBean>)modelMap.get(bbsName);
-  int postPerPage = 15;
+  //int pages = Integer.parseInt(request.getParameter("PAGE"));
+  Integer postPerPage = (Integer)request.getAttribute("postPerPage");
 %>
 
 
@@ -19,14 +20,15 @@
 <title><%= bbsName %></title>
 </head>
 <body>
-  <div>PostNumber</div>
-  <div>Title</div>
-  <div>userName</div>
-  <div>ReadCount</div>
-  <div>WriteDate</div>
+  <div style="width:30px; text-align:center; float:left">No</div>
+  <div style="width:400px; text-align:center; float:left">Title</div>
+  <div style="width:80px; text-align:center; float:left">User</div>
+  <div style="width:30px; text-align:center; float:left">RC</div>
+  <div style="width:80px; text-align:center; float:left">Date</div>
   <br>
   <%
   	int postCnt;
+
   	if(postList.size()<postPerPage){
   	    postCnt = postList.size();
   	}else{
@@ -35,11 +37,11 @@
     for(int i=0;i<postCnt;i++){
       PostBean content = (PostBean)postList.get(i);
   %>
-  <div><%= content.getPostNumber() %></div>
-  <div><%= content.getTitle() %></div>
-  <div><%= content.getUserName() %></div>
-  <div><%= content.getReadCount() %></div>
-  <div><%= content.getWriteDate() %></div>
+  <div style="width:30px; text-align:center; float:left"><%= content.getPostNumber() %></div>
+  <div style="width:400px; float:left"><%= content.getTitle() %></div>
+  <div style="width:80px; text-align:center; float:left"><%= content.getUserName() %></div>
+  <div style="width:30px; text-align:center; float:left"><%= content.getReadCount() %></div>
+  <div style="width:80px; text-align:center; float:left"><%= content.getWriteDate() %></div>
   <br>
   <%
     }

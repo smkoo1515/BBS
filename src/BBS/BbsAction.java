@@ -3,6 +3,7 @@ package BBS;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -13,10 +14,10 @@ import javax.sql.DataSource;
 
 public abstract class BbsAction {
 
-    protected DataSource ds;
-    protected Connection conn = null;
-    protected PreparedStatement pstmt = null;
-    protected ResultSet rs = null;
+    private DataSource ds;
+    private Connection conn = null;
+    private PreparedStatement pstmt = null;
+    private ResultSet rs = null;
 
     public abstract BbsView doServiceWith(HttpServletRequest req);
 
@@ -31,5 +32,18 @@ public abstract class BbsAction {
             System.out.println("error: " + ex);
             return;
         }
+    }
+
+    protected ResultSet executeQuery(String query){
+        if(conn != null){
+            try {
+                pstmt = conn.prepareStatement(query);
+                rs = pstmt.executeQuery();
+            } catch (SQLException e) {
+                // TODO 自動生成された catch ブロック
+                e.printStackTrace();
+            }
+        }
+        return rs;
     }
 }
