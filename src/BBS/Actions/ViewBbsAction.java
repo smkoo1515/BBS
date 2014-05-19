@@ -26,6 +26,8 @@ public class ViewBbsAction extends BbsAction {
             pages = Integer.parseInt(pageStr);
         }
         req.setAttribute("postPerPage", postPerPage);
+        int postCount = getPostCount(bbsName);
+        req.setAttribute("postCount", postCount);
         List<PostBean> postList = selectPostList(bbsName);
         if(postList != null){
             BbsView view = new BbsView();
@@ -60,8 +62,6 @@ public class ViewBbsAction extends BbsAction {
 
                 postList.add(postBean);
             }
-            executeQuery("select found_rows()");
-
             return postList;
         }
         catch (SQLException sqex) {
@@ -70,4 +70,19 @@ public class ViewBbsAction extends BbsAction {
         }
         return null;
     }
+
+    private int getPostCount(String bbsName){
+        ArrayList<HashMap<String, String>> result = new ArrayList<HashMap<String, String>>();
+        try {
+            executeQuery("select count(*) from " + bbsName);
+            result = getResult();
+            int postCount = Integer.parseInt(result.get(0).get("count(*)"));
+            return postCount;
+        } catch (SQLException e) {
+            // TODO 自動生成された catch ブロック
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 }

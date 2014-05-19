@@ -13,6 +13,7 @@
       Integer pages = Integer.parseInt(pageStr);
   }
   Integer postPerPage = (Integer)request.getAttribute("postPerPage");
+  Integer postCount =  (Integer)request.getAttribute("postCount");
 %>
 
 
@@ -23,6 +24,7 @@
 <title><%= bbsName %></title>
 </head>
 <body>
+  <div><%= postCount %> posts</div>
   <div style="width:30px; text-align:center; float:left">No</div>
   <div style="width:400px; text-align:center; float:left">Title</div>
   <div style="width:80px; text-align:center; float:left">User</div>
@@ -30,14 +32,13 @@
   <div style="width:80px; text-align:center; float:left">Date</div>
   <br>
   <%
-  	int postCnt;
-
+  	int cnt;
   	if(postList.size()<postPerPage){
-  	    postCnt = postList.size();
+  	    cnt = postList.size();
   	}else{
-  	    postCnt = postPerPage;
+  	    cnt = postPerPage;
   	}
-    for(int i=0;i<postCnt;i++){
+    for(int i=0;i<cnt;i++){
       PostBean content = (PostBean)postList.get(i);
   %>
   <div style="width:30px; text-align:center; float:left"><%= content.getPostNumber() %></div>

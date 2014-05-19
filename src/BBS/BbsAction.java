@@ -39,12 +39,13 @@ public abstract class BbsAction {
         }
     }
 
-    protected ResultSet executeQuery(String query) throws SQLException{
+    protected boolean executeQuery(String query) throws SQLException{
         if(conn != null){
             try {
                 pstmt = conn.prepareStatement(query);
                 rs = pstmt.executeQuery();
                 result = resultSetToArrayList(rs);
+                return true;
 
             } catch (SQLException e) {
                 // TODO 自動生成された catch ブロック
@@ -54,7 +55,7 @@ public abstract class BbsAction {
                 if(pstmt != null){pstmt.close();}
             }
         }
-        return rs;
+        return false;
     }
 
     protected ArrayList<HashMap<String, String>> getResult(){
