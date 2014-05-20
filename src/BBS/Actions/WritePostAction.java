@@ -27,6 +27,7 @@ public class WritePostAction extends BbsAction {
 
         BbsView view = new BbsView();
         view.setViewPage("ViewBbs.do?BBS=" + bbsName);
+        view.setRedirect(true);
         return view;
     }
 

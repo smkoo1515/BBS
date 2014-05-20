@@ -14,7 +14,7 @@ import BBS.Beans.PostBean;
 
 public class ViewBbsAction extends BbsAction {
 
-    private int postPerPage = 5;
+    private int postPerPage = 10;
     private int pages;
 
     @Override
