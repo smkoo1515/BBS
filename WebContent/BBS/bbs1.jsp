@@ -9,8 +9,9 @@
   String bbsName = request.getParameter("BBS");
   List<PostBean> postList=(List<PostBean>)modelMap.get(bbsName);
   String pageStr = request.getParameter("PAGE");
+  Integer pages = 1;
   if(pageStr != null){
-      Integer pages = Integer.parseInt(pageStr);
+      pages = Integer.parseInt(pageStr);
   }
   Integer postPerPage = (Integer)request.getAttribute("postPerPage");
   Integer postCount =  (Integer)request.getAttribute("postCount");
@@ -50,6 +51,28 @@
   <%
     }
   %>
+
+  <%
+	Integer lastPage = postCount/postPerPage + 1;
+	Integer navIndex = pages/10*10+1;
+	for(int i=0; i < 10; i++){
+	    if(navIndex > lastPage){
+	        break;
+	    }
+	    if(navIndex == pages){
+  %><%=navIndex%><%
+	    }else{
+  %>
+  	<a href="ViewBbs.do?BBS=<%=bbsName%>&PAGE=<%=navIndex%>"> <%=navIndex%> </a>
+  <%
+	    }
+  		navIndex++;
+    }
+  %>
+
+
+  <br><br><br>
+  <a href="CtrPost.do?BBS=<%=bbsName%>&CMD=Write">Write</a>
 
 </body>
 </html>

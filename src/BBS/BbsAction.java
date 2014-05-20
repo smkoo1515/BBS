@@ -43,8 +43,12 @@ public abstract class BbsAction {
         if(conn != null){
             try {
                 pstmt = conn.prepareStatement(query);
-                rs = pstmt.executeQuery();
-                result = resultSetToArrayList(rs);
+                if(query.toLowerCase().contains("select")){
+                    rs = pstmt.executeQuery();
+                    result = resultSetToArrayList(rs);
+                }else{
+                    pstmt.executeUpdate(query);
+                }
                 return true;
 
             } catch (SQLException e) {

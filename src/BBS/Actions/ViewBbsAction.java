@@ -20,6 +20,7 @@ public class ViewBbsAction extends BbsAction {
     @Override
     public BbsView doServiceWith(HttpServletRequest req) {
         String bbsName = req.getParameter("BBS");
+        req.setAttribute("bbsName",bbsName);
         String pageStr = req.getParameter("PAGE");
         pages = 1;
         if(pageStr != null){
