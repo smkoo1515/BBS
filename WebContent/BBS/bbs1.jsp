@@ -54,7 +54,7 @@
 
   <%
 	Integer lastPage = (int)Math.ceil((double)postCount/postPerPage);
-	Integer navIndex = pages/10*10+1;
+	Integer navIndex = (pages-1)/10*10+1;
 	for(int i=0; i < 10; i++){
 	    if(navIndex > lastPage){
 	        break;
