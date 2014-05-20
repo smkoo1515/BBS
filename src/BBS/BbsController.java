@@ -51,13 +51,14 @@ public class BbsController extends HttpServlet {
 
     private String getCommandBy(HttpServletRequest req) {
         String command = req.getRequestURI().substring(req.getContextPath().length());
+        command = command.replaceAll("^/.+/", "");
         return command = command.substring(0, command.lastIndexOf("."));
+
     }
 
     private BbsAction getActionBy(String command) throws ServletException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         if( !actionMap.containsKey(command) ) {
-            String actionStr = command.replaceAll("/", ".");
-            String actionPath = "BBS.Actions" + actionStr + "Action";
+            String actionPath = "BBS.Actions." + command + "Action";
 
             BbsAction action = null;
             action = (BbsAction) Class.forName(actionPath).newInstance();
