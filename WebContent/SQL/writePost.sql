@@ -1,0 +1,1 @@
+insert into $bbsName$(userid, username, title, content) values('$userid$','$username$','$title$','$content$');

@@ -1,0 +1,2 @@
+SELECT * FROM bbs1;
+SELECT * FROM bbs1;

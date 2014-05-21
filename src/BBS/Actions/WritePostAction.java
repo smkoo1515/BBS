@@ -1,6 +1,8 @@
 package BBS.Actions;
 
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,9 +19,16 @@ public class WritePostAction extends BbsAction {
         String title = req.getParameter("title");
         String content = req.getParameter("content");
 
-        String writeSql = "insert into " + bbsName + "(userid, username, title, content) values(\'" + userid + "\',\'" + username + "\',\'" + title + "\',\'" + content + "\');";
+        String sqlFile="writePost.sql";
+        Map<String, String> sqlParams = new HashMap<String, String>();
+        sqlParams.put("bbsName", bbsName);
+        sqlParams.put("userid", userid);
+        sqlParams.put("username", username);
+        sqlParams.put("title", title);
+        sqlParams.put("content", content);
+
         try {
-            executeQuery(writeSql);
+            executeQuery(sqlFile, sqlParams);
         } catch (SQLException e) {
             // TODO 自動生成された catch ブロック
             e.printStackTrace();

@@ -42,11 +42,16 @@ public class ViewBbsAction extends BbsAction {
     }
 
     private List<PostBean> selectPostList(String bbsName) {
-        String selectSql = "select * from " + bbsName + " order by postno desc limit " + (pages - 1) * postPerPage + ", " +  postPerPage;
+        Map<String, String> sqlParams = new HashMap<String, String>();
+        String sqlFile = "selectPostList.sql";
+        sqlParams.put("bbsName", bbsName);
+        sqlParams.put("startPost", Integer.toString((pages-1)*postPerPage));
+        sqlParams.put("postPerPage", Integer.toString(postPerPage));
+
         List<PostBean> postList = new ArrayList<PostBean>();
         try{
             ArrayList<HashMap<String, String>> result = new ArrayList<HashMap<String, String>>();
-            executeQuery(selectSql);
+            executeQuery(sqlFile, sqlParams);
             result = getResult();
 
             for(int i=0; i < result.size(); i++){
@@ -73,9 +78,13 @@ public class ViewBbsAction extends BbsAction {
     }
 
     private int getPostCount(String bbsName){
-        ArrayList<HashMap<String, String>> result = new ArrayList<HashMap<String, String>>();
+        Map<String, String> sqlParams = new HashMap<String, String>();
+        String sqlFile = "getPostCount.sql";
+        sqlParams.put("bbsName", bbsName);
+
         try {
-            executeQuery("select count(*) from " + bbsName);
+            ArrayList<HashMap<String, String>> result = new ArrayList<HashMap<String, String>>();
+            executeQuery(sqlFile,sqlParams);
             result = getResult();
             int postCount = Integer.parseInt(result.get(0).get("count(*)"));
             return postCount;
