@@ -51,7 +51,7 @@ public class BbsController extends HttpServlet {
 
     private String getCommandBy(HttpServletRequest req) {
         String command = req.getRequestURI().substring(req.getContextPath().length());
-        command = command.replaceAll("^/.+/", "");
+        command = command.replaceAll("^/.+/", "").replaceFirst("^/", "");
         return command = command.substring(0, command.lastIndexOf("."));
 
     }
