@@ -73,7 +73,6 @@ public class BbsController extends HttpServlet {
     }
     private void doHandleView(BbsView view, HttpServletRequest req,
             HttpServletResponse resp) throws ServletException, IOException {
-        BbsSession bbsSession = new BbsSession();
         if(view == null) return;
 
         if( view.getModelMap() != null && !view.getModelMap().isEmpty() ) {
