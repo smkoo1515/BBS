@@ -71,10 +71,12 @@
     }
   %>
 
+<br>
+<a href="Index.jsp">Index</a>
 
   <br><br><br>
   <%
-	if(request.getAttribute("hasSession").equals("true")){
+	if(request.getSession().getAttribute("bbsUserInfo") != null){
   %>
   <a href="CtrPost.do?BBS=<%=bbsName%>&CMD=Write">Write</a>
   <%

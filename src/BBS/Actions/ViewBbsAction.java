@@ -29,7 +29,7 @@ public class ViewBbsAction extends BbsAction {
         req.setAttribute("postPerPage", postPerPage);
         int postCount = getPostCount(bbsName);
         req.setAttribute("postCount", postCount);
-        List<PostBean> postList = selectPostList(bbsName);
+        List<PostBean> postList = selectPostListFrom(bbsName);
         if(postList != null){
             BbsView view = new BbsView();
             Map<String,Object> bbsMap = new HashMap<String,Object>();
@@ -41,7 +41,7 @@ public class ViewBbsAction extends BbsAction {
         return null;
     }
 
-    private List<PostBean> selectPostList(String bbsName) {
+    private List<PostBean> selectPostListFrom(String bbsName) {
         Map<String, String> sqlParams = new HashMap<String, String>();
         String sqlFile = "selectPostList.sql";
         sqlParams.put("bbsName", bbsName);

@@ -9,6 +9,7 @@ public class BbsSession{
     public HttpServletRequest login(HttpServletRequest req, UserInfoBean userInfo) {
         userInfo.setPassword(null);
         req.getSession().setAttribute("bbsUserInfo", userInfo);
+        
         return req;
     }
 

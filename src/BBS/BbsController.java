@@ -80,12 +80,6 @@ public class BbsController extends HttpServlet {
             req.setAttribute("modelMap", view.getModelMap());
         }
 
-        if( bbsSession.check(req) ){
-            req.setAttribute("hasSession", "true");
-        }else{
-            req.setAttribute("hasSession", "false");
-        }
-
         if( view.isRedirect() ) {
             resp.sendRedirect(view.getViewPage());
         } else {
