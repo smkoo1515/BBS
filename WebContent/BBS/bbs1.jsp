@@ -4,8 +4,9 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
 
+
 <%
-  Map<String,PostBean> modelMap = (Map<String,PostBean>)request.getAttribute("modelMap");
+  Map<String,Object> modelMap = (Map<String,Object>)request.getAttribute("modelMap");
   String bbsName = request.getParameter("BBS");
   List<PostBean> postList=(List<PostBean>)modelMap.get(bbsName);
   String pageStr = request.getParameter("PAGE");
@@ -72,7 +73,14 @@
 
 
   <br><br><br>
+  <%
+	if(request.getAttribute("hasSession").equals("true")){
+  %>
   <a href="CtrPost.do?BBS=<%=bbsName%>&CMD=Write">Write</a>
+  <%
+	}
+  %>
+
 
 </body>
 </html>
