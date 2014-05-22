@@ -26,6 +26,8 @@
 <title><%= bbsName %></title>
 </head>
 <body>
+<%@ include file="loginout.jsp" %>
+<br><br>
   <div><%= postCount %> posts</div>
   <div style="width:30px; text-align:center; float:left">No</div>
   <div style="width:400px; text-align:center; float:left">Title</div>
