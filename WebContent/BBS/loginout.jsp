@@ -1,6 +1,7 @@
 <%@ page import="BBS.Beans.UserInfoBean" %>
 
 <%
+<<<<<<< HEAD
 UserInfoBean userInfo = (UserInfoBean)request.getSession().getAttribute("bbsUserInfo");
 	if(userInfo != null){
 %>
@@ -14,6 +15,17 @@ UserInfoBean userInfo = (UserInfoBean)request.getSession().getAttribute("bbsUser
 	passwd <input type="passwd" name="passwd" size=30><br>
 	<input type="submit" value="login">
   </form>
+=======
+	if(request.getAttribute("hasSession").equals("true")){
+	    UserInfoBean userInfo = (UserInfoBean)request.getSession().getAttribute("bbsUserInfo");
+%>
+	<%= userInfo.getName() %><br>
+  <a href="">logout</a>
+<%
+	}else{
+%>
+
+>>>>>>> heo
 <%
 	}
 %>
