@@ -1,1 +1,0 @@
-select * from userinfo where id=$id$;

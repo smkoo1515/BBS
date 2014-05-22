@@ -1,6 +1,5 @@
 package BBS.Actions;
 
-<<<<<<< HEAD
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,21 +45,4 @@ public class loginAction extends BbsAction{
         view.setRedirect(true);
         return view;
     }
-=======
-import javax.servlet.http.HttpServletRequest;
-
-import BBS.BbsAction;
-import BBS.BbsView;
-
-public class loginAction extends BbsAction{
-
-    @Override
-    public BbsView doServiceWith(HttpServletRequest req) {
-        BbsView view = new BbsView();
-
-
-        return view;
-    }
-
->>>>>>> heo
 }
