@@ -80,7 +80,7 @@
   <%
 	if(request.getSession().getAttribute("bbsUserInfo") != null){
   %>
-  <a href="BBS/writePost.jsp?BBS=<%=bbsName%>">Write</a>
+  <a href="POST/writePost.jsp?BBS=<%=bbsName%>">Write</a>
   <%
 	}
   %>

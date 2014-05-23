@@ -13,7 +13,7 @@ public class LogoutAction extends BbsAction{
         BbsView view = new BbsView();
         BbsSession session = new BbsSession();
         session.logout(req);
-        view.setViewPage("Index.jsp");
+        view.setViewPage("/BBS/Index.jsp");
         view.setRedirect(true);
         return view;
     }

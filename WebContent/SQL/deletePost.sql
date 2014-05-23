@@ -1,1 +1,1 @@
-update '$bbsName$' set delflag='9' from '$bbsName$' where postno == '$postno$' and userid == '$userid$'
+update $bbsName$ set delflg='9' where postno = '$postno$' and userid = '$userid$'

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="BBS.Beans.PostBean" %>
+<%@ page import="BBS.Beans.UserInfoBean" %>
 <%@ page import="java.util.Map" %>
 
 <%
@@ -18,7 +19,7 @@
 <title>Read Post</title>
 </head>
 <body>
-<%@ include file="loginout.jsp" %><br><br>
+<%@ include file="/BBS/loginout.jsp" %><br><br>
 	post number: <%=post.getPostNumber() %><br>
 	user name: <%= post.getUserName() %><br>
 	title: <%= post.getTitle() %><br>
@@ -28,7 +29,8 @@
 	recommand: <%= post.getRecommandCount() %>
 	<br><br><br>
   <%
-	if(request.getSession().getAttribute("bbsUserInfo") != null){
+    UserInfoBean userBean = (UserInfoBean)request.getSession().getAttribute("bbsUserInfo");
+	if(userBean != null && userBean.getId().equals(post.getUserId())){
   %>
   <a href="DeletePost.do?BBS=<%=bbsName%>&&POSTNO=<%=post.getPostNumber()%>">Delete</a>
   <%

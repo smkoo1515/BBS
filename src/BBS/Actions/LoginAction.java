@@ -41,7 +41,7 @@ public class LoginAction extends BbsAction{
             session.login(req,userInfo);
         }
 
-        view.setViewPage("Index.jsp");
+        view.setViewPage("/BBS/Index.jsp");
         view.setRedirect(true);
         return view;
     }

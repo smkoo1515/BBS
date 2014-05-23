@@ -7,6 +7,7 @@
 <title>Write Post</title>
 </head>
 <body>
+
   <form method="post" action="WritePost.do">
   	<input type="hidden" name="BBS" value="<%=request.getParameter("BBS")%>">
   	userid <input type="text" name="userid" size=14><br>

@@ -1,1 +1,1 @@
-select * from  $bbsName$ where postno = '$postno$' and delflg != '9' or delflg is null
+select * from  $bbsName$ where postno = '$postno$' and (delflg != '9' or delflg is null)
