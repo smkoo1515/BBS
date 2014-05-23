@@ -71,7 +71,6 @@ public abstract class BbsAction {
             try {
                 String query = makeSql(readSQLfrom(fileName),sqlParams);
                 pstmt = conn.prepareStatement(query);
-                System.out.println(query);
                 if(query.toLowerCase().contains("select")){
                     rs = pstmt.executeQuery();
                     result = resultSetToArrayList(rs);
@@ -79,7 +78,7 @@ public abstract class BbsAction {
                     pstmt.executeUpdate(query);
                 }
                 return true;
-      
+
             } catch (FileNotFoundException e) {
                 // TODO 自動生成された catch ブロック
                 e.printStackTrace();

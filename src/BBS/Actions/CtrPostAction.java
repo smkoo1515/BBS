@@ -13,11 +13,12 @@ public class CtrPostAction extends BbsAction {
         req.setAttribute("BBS", req.getParameter("BBS"));
         String Command = req.getParameter("CMD");
         if(Command.equals("Write")){
-            view.setViewPage("/BBS/WritePost.jsp");
+            view.setViewPage("/BBS/writePost.jsp");
         }else if(Command.equals("Modify")){
-            view.setViewPage("/BBS/ModifyPost.jsp");
+            view.setViewPage("/BBS/modifyPost.jsp");
         }else{
-            view.setViewPage("/BBS/ReadPost.jsp");
+            ReadPost read = new ReadPost(req);
+            return read.getView();
         }
         return view;
     }

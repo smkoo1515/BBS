@@ -10,7 +10,6 @@ public class PostBean  {
     private String writeDate;
     private int readCount;
     private int recommandCount;
-    private int userNumber;
     private String deleteFlag;
 
     public int getPostNumber() {
@@ -55,12 +54,6 @@ public class PostBean  {
     }
     public void setRecommandCount(int recommandCount) {
         this.recommandCount = recommandCount;
-    }
-    public int getUserNumber() {
-        return userNumber;
-    }
-    public void setUserNumber(int userNumber) {
-        this.userNumber = userNumber;
     }
     public String getWriteDate() {
         return writeDate;

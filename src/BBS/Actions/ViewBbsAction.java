@@ -57,14 +57,11 @@ public class ViewBbsAction extends BbsAction {
             for(int i=0; i < result.size(); i++){
                 PostBean postBean=new PostBean();
                 postBean.setPostNumber(Integer.parseInt(result.get(i).get("postno")));
-                postBean.setUserId(result.get(i).get("userid"));
                 postBean.setUserName(result.get(i).get("username"));
                 postBean.setTitle(result.get(i).get("title"));
-                postBean.setContent(result.get(i).get("content"));
                 postBean.setWriteDate(result.get(i).get("writedate"));
                 postBean.setReadCount(Integer.parseInt(result.get(i).get("readcount")));
                 postBean.setRecommandCount(Integer.parseInt(result.get(i).get("recommand")));
-                postBean.setDeleteFlag(result.get(i).get("delflg"));
 
                 postList.add(postBean);
             }
