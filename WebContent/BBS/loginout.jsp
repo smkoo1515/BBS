@@ -11,7 +11,7 @@ UserInfoBean userInfo = (UserInfoBean)request.getSession().getAttribute("bbsUser
 %>
 	<form method="post" action="Login.do">
   	id <input type="text" name="id" size=14><br>
-	passwd <input type="passwd" name="passwd" size=30><br>
+	passwd <input type="password" name="passwd" size=30><br>
 	<input type="submit" value="sign in">
   </form>
   <input type="button" value="sign up">
