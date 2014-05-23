@@ -5,11 +5,11 @@ UserInfoBean userInfo = (UserInfoBean)request.getSession().getAttribute("bbsUser
 	if(userInfo != null){
 %>
     Name: <%= userInfo.getName() %><br>
-    <a href="logout.do">logout</a>
+    <a href="Logout.do">logout</a>
 <%
 	}else{
 %>
-	<form method="post" action="login.do">
+	<form method="post" action="Login.do">
   	id <input type="text" name="id" size=14><br>
 	passwd <input type="passwd" name="passwd" size=30><br>
 	<input type="submit" value="sign in">

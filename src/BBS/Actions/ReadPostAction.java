@@ -11,23 +11,11 @@ import BBS.BbsAction;
 import BBS.BbsView;
 import BBS.Beans.PostBean;
 
-public class ReadPost extends BbsAction{
-
-    private BbsView view;
-
-    public ReadPost(HttpServletRequest req){
-        super();
-        view = new BbsView();
-        view = doServiceWith(req);
-    }
-
-    public BbsView getView(){
-        return view;
-    }
-
+public class ReadPostAction extends BbsAction{
 
     @Override
     public BbsView doServiceWith(HttpServletRequest req) {
+        BbsView view = new BbsView();
         String bbsName = req.getParameter("BBS");
         String postNumber = req.getParameter("POSTNO");
         Map<String, Object> postMap = new HashMap<>();

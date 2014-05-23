@@ -46,7 +46,7 @@
       PostBean content = (PostBean)postList.get(i);
   %>
   <div style="width:30px; text-align:center; float:left"><%= content.getPostNumber() %></div>
-  <a href="CtrPost.do?BBS=<%=bbsName%>&&CMD=Read&&POSTNO=<%=content.getPostNumber()%>"><div style="width:400px; float:left"><%= content.getTitle() %></div></a>
+  <a href="ReadPost.do?BBS=<%=bbsName%>&&POSTNO=<%=content.getPostNumber()%>"><div style="width:400px; float:left"><%= content.getTitle() %></div></a>
   <div style="width:80px; text-align:center; float:left"><%= content.getUserName() %></div>
   <div style="width:30px; text-align:center; float:left"><%= content.getReadCount() %></div>
   <div style="width:80px; text-align:center; float:left"><%= content.getWriteDate() %></div>
@@ -80,7 +80,7 @@
   <%
 	if(request.getSession().getAttribute("bbsUserInfo") != null){
   %>
-  <a href="CtrPost.do?BBS=<%=bbsName%>&CMD=Write">Write</a>
+  <a href="BBS/writePost.jsp?BBS=<%=bbsName%>">Write</a>
   <%
 	}
   %>

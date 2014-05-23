@@ -12,7 +12,7 @@ import BBS.BbsSession;
 import BBS.BbsView;
 import BBS.Beans.UserInfoBean;
 
-public class loginAction extends BbsAction{
+public class LoginAction extends BbsAction{
     @Override
     public BbsView doServiceWith(HttpServletRequest req) {
         String id = (String) req.getParameter("id");

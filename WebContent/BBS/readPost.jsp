@@ -4,6 +4,7 @@
 <%@ page import="java.util.Map" %>
 
 <%
+	String bbsName = request.getParameter("BBS");
 	Map<String,Object> postMap = (Map<String,Object>)request.getAttribute("modelMap");
 	String postNumber = request.getParameter("POSTNO");
 	PostBean post = (PostBean)postMap.get(postNumber);
@@ -17,6 +18,7 @@
 <title>Read Post</title>
 </head>
 <body>
+<%@ include file="loginout.jsp" %><br><br>
 	post number: <%=post.getPostNumber() %><br>
 	user name: <%= post.getUserName() %><br>
 	title: <%= post.getTitle() %><br>
@@ -24,5 +26,13 @@
 	write date: <%= post.getWriteDate() %><br>
 	read count: <%= post.getReadCount() %><br>
 	recommand: <%= post.getRecommandCount() %>
+	<br><br><br>
+  <%
+	if(request.getSession().getAttribute("bbsUserInfo") != null){
+  %>
+  <a href="DeletePost.do?BBS=<%=bbsName%>&&POSTNO=">Delete</a>
+  <%
+	}
+  %>
 </body>
 </html>

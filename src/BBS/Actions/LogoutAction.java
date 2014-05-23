@@ -6,7 +6,7 @@ import BBS.BbsAction;
 import BBS.BbsSession;
 import BBS.BbsView;
 
-public class logoutAction extends BbsAction{
+public class LogoutAction extends BbsAction{
 
     @Override
     public BbsView doServiceWith(HttpServletRequest req) {

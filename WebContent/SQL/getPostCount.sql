@@ -1,1 +1,1 @@
-select count(*) from $bbsName$
+select count(*) from $bbsName$ where delflg != '9' or delflg is null

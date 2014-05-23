@@ -8,7 +8,7 @@
 </head>
 <body>
   <form method="post" action="WritePost.do">
-  	<input type="hidden" name="BBS" value="<%=request.getAttribute("BBS")%>">
+  	<input type="hidden" name="BBS" value="<%=request.getParameter("BBS")%>">
   	userid <input type="text" name="userid" size=14><br>
 	username <input type="text" name="username" size=30><br>
 	title <input type="text" name="title" size=45><br>
