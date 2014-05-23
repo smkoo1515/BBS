@@ -30,7 +30,7 @@
   <%
 	if(request.getSession().getAttribute("bbsUserInfo") != null){
   %>
-  <a href="DeletePost.do?BBS=<%=bbsName%>&&POSTNO=">Delete</a>
+  <a href="DeletePost.do?BBS=<%=bbsName%>&&POSTNO=<%=post.getPostNumber()%>">Delete</a>
   <%
 	}
   %>

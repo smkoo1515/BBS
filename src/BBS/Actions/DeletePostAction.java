@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import BBS.BbsAction;
 import BBS.BbsSession;
 import BBS.BbsView;
+import BBS.Beans.UserInfoBean;
 
 public class DeletePostAction extends BbsAction{
 
@@ -17,7 +18,7 @@ public class DeletePostAction extends BbsAction{
         BbsView view = new BbsView();
         String bbsName = req.getParameter("BBS");
         String postNumber = req.getParameter("POSTNO");
-        String userId = (String) req.getSession().getAttribute(BbsSession.BBSSESSION);
+        String userId = (String)((UserInfoBean)req.getSession().getAttribute(BbsSession.BBSSESSION)).getId();
         deletePost(bbsName,postNumber,userId);
 
         view.setViewPage("ViewBbs.do?BBS=" + bbsName);
