@@ -32,9 +32,16 @@
     UserInfoBean userBean = (UserInfoBean)request.getSession().getAttribute("bbsUserInfo");
 	if(userBean != null && userBean.getId().equals(post.getUserId())){
   %>
-  <a href="DeletePost.do?BBS=<%=bbsName%>&&POSTNO=<%=post.getPostNumber()%>">Delete</a>
+  <a href="DeletePost.do?BBS=<%=bbsName%>&&POSTNO=<%=post.getPostNumber()%>">Delete </a>
+  <form action="EditPost.do" method="post">
+	<input type="hidden" name="BBS" value="<%=bbsName %>">
+  	<input type="hidden" name="TITLE" value="<%=post.getTitle() %>">
+  	<input type="hidden" name="CONTENT" value="<%=post.getContent() %>">
+  	<input type="hidden" name="POSTNO" value="<%=post.getPostNumber() %>">
+  	<input type="submit" value="Edit">
+  </form>
   <%
 	}
   %>
 </body>
-</html>
+</html></element>
