@@ -7,15 +7,18 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import BBS.BbsAction;
+import BBS.BbsSession;
 import BBS.BbsView;
+import BBS.Beans.UserInfoBean;
 
 public class WritePostAction extends BbsAction {
 
     @Override
     public BbsView doServiceWith(HttpServletRequest req) {
+        UserInfoBean userInfo = (UserInfoBean) req.getSession().getAttribute(BbsSession.BBSSESSION);
         String bbsName = req.getParameter("BBS");
-        String userid = req.getParameter("userid");
-        String username = req.getParameter("username");
+        String userid =userInfo.getId();
+        String username = userInfo.getName();
         String title = req.getParameter("title");
         String content = req.getParameter("content");
 
