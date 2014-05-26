@@ -85,6 +85,9 @@
 	}
   %>
 
+<br><br><br>
+<%@ include file="search.jsp" %>
+
 
 </body>
 </html>

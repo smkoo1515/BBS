@@ -12,7 +12,7 @@ import BBS.BbsAction;
 import BBS.BbsView;
 import BBS.Beans.PostBean;
 
-public class ViewBbsAction extends BbsAction {
+public class SearchAction extends BbsAction {
 
     private int postPerPage = 10;
     private int pages;
@@ -20,15 +20,26 @@ public class ViewBbsAction extends BbsAction {
     @Override
     public BbsView doServiceWith(HttpServletRequest req) {
         String bbsName = req.getParameter("BBS");
+        String searchType = req.getParameter("SEARCHTYPE");
+        String column = "";
+        switch (searchType){
+        case "Title":
+            column = "title";
+            break;
+        case "Name":
+            column = "username";
+            break;
+        }
+        String keyword = req.getParameter("KEYWORD");
         String pageStr = req.getParameter("PAGE");
         pages = 1;
         if(pageStr != null){
             pages = Integer.parseInt(pageStr);
         }
         req.setAttribute("postPerPage", postPerPage);
-        int postCount = getPostCount(bbsName);
+        int postCount = getPostCount(bbsName, column, keyword);
         req.setAttribute("postCount", postCount);
-        List<PostBean> postList = selectPostListFrom(bbsName);
+        List<PostBean> postList = selectSearchtListFrom(bbsName, column, keyword);
         if(postList != null){
             BbsView view = new BbsView();
             Map<String,Object> bbsMap = new HashMap<String,Object>();
@@ -40,10 +51,12 @@ public class ViewBbsAction extends BbsAction {
         return null;
     }
 
-    private List<PostBean> selectPostListFrom(String bbsName) {
+    private List<PostBean> selectSearchtListFrom(String bbsName, String column, String keyword) {
         Map<String, String> sqlParams = new HashMap<String, String>();
-        String sqlFile = "selectPostList.sql";
+        String sqlFile = "selectSearchList.sql";
         sqlParams.put("bbsName", bbsName);
+        sqlParams.put("column", column);
+        sqlParams.put("keyword", keyword);
         sqlParams.put("startPost", Integer.toString((pages-1)*postPerPage));
         sqlParams.put("postPerPage", Integer.toString(postPerPage));
 
@@ -73,10 +86,12 @@ public class ViewBbsAction extends BbsAction {
         return null;
     }
 
-    private int getPostCount(String bbsName){
+    private int getPostCount(String bbsName, String column, String keyword){
         Map<String, String> sqlParams = new HashMap<String, String>();
-        String sqlFile = "getPostCount.sql";
+        String sqlFile = "getSearchCount.sql";
         sqlParams.put("bbsName", bbsName);
+        sqlParams.put("column", column);
+        sqlParams.put("keyword", keyword);
 
         try {
             ArrayList<HashMap<String, String>> result = new ArrayList<HashMap<String, String>>();

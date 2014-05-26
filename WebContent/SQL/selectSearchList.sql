@@ -1,0 +1,1 @@
+select * from  $bbsName$ where (delflg != '9' or delflg is null) and $column$ like '%$keyword$%' order by postno desc limit $startPost$, $postPerPage$
