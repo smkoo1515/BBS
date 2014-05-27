@@ -25,7 +25,7 @@
   	<input type="hidden" name="POSTNO" value="<%=post.getPostNumber()%>">
 	username: <%= userInfo.getName() %><br>
 	title <input type="text" name="TITLE" value="<%= post.getTitle() %>" size=45><br>
-	content <input type="text" name="CONTENT" vlaue="<%= post.getContent() %>" size=500>
+	content <input type="text" name="CONTENT" value="<%= post.getContent() %>" size=500>
 	<input type="submit">
   </form>
 </body>

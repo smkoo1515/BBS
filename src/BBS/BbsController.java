@@ -31,7 +31,6 @@ public class BbsController extends HttpServlet {
     public void init () throws ServletException
     {
        super.init();
-
        actionMap = new HashMap<String, BbsAction>();
     }
 
@@ -51,7 +50,7 @@ public class BbsController extends HttpServlet {
 
     private String getCommandBy(HttpServletRequest req) {
         String command = req.getRequestURI().substring(req.getContextPath().length());
-        command = command.replaceAll("^/.+/", "").replaceFirst("^/", "");
+        command = command.replaceFirst("^/", "");
         return command = command.substring(0, command.lastIndexOf("."));
 
     }
@@ -78,6 +77,7 @@ public class BbsController extends HttpServlet {
         if( view.getModelMap() != null && !view.getModelMap().isEmpty() ) {
             req.setAttribute("modelMap", view.getModelMap());
         }
+        System.out.println(view.getViewPage());
 
         if( view.isRedirect() ) {
             resp.sendRedirect(view.getViewPage());
