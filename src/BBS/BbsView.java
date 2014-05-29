@@ -1,12 +1,19 @@
+//　ビュー
+
 package BBS;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class BbsView {
+    //　Redirect、Forward区分
     private boolean isRedirect;
+    //　ビューに伝達する情報を保管
     private Map<String,Object> modelMap = new HashMap<String,Object>();
+    //　移行するビューにURI
     private String viewPage;
+
+
     public Map<String,Object> getModelMap() {
         return modelMap;
     }

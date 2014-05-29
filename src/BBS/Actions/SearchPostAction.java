@@ -12,7 +12,7 @@ import BBS.BbsAction;
 import BBS.BbsView;
 import BBS.Beans.PostBean;
 
-public class SearchAction extends BbsAction {
+public class SearchPostAction extends BbsAction {
 
     private int postPerPage = 10;
     private int pages;
@@ -45,7 +45,7 @@ public class SearchAction extends BbsAction {
             Map<String,Object> bbsMap = new HashMap<String,Object>();
             bbsMap.put(bbsName, postList);
             view.setModelMap(bbsMap);
-            view.setViewPage("/BBS/" + bbsName + ".jsp");
+            view.setViewPage("BBS/bbs.jsp");
             return view;
         }
         return null;

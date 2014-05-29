@@ -6,9 +6,9 @@
 
 <%
 	String bbsName = request.getParameter("BBS");
-	Map<String,Object> postMap = (Map<String,Object>)request.getAttribute("modelMap");
+	Map<String,Object> modelMap = (Map<String,Object>)request.getAttribute("modelMap");
 	String postNumber = request.getParameter("POSTNO");
-	PostBean post = (PostBean)postMap.get(postNumber);
+	PostBean post = (PostBean)modelMap.get(postNumber);
 %>
 
 
@@ -19,7 +19,7 @@
 <title>Read Post</title>
 </head>
 <body>
-<%@ include file="/BBS/loginout.jsp" %><br><br>
+<%@ include file="../BBS/loginout.jsp" %><br><br>
 	post number: <%=post.getPostNumber() %><br>
 	user name: <%= post.getUserName() %><br>
 	title: <%= post.getTitle() %><br>
@@ -43,5 +43,13 @@
   <%
 	}
   %>
+  <br><br><br>
+  <%
+  	String replyPath = "ViewReply.do?BBS="+bbsName+"&&POSTNO="+postNumber;
+  	request.getRequestDispatcher(replyPath).include(request, response);
+
+
+  %>
+
 </body>
-</html></element>
+</html>

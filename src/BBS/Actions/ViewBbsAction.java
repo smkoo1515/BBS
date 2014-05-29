@@ -34,7 +34,7 @@ public class ViewBbsAction extends BbsAction {
             Map<String,Object> bbsMap = new HashMap<String,Object>();
             bbsMap.put(bbsName, postList);
             view.setModelMap(bbsMap);
-            view.setViewPage("/BBS/" + bbsName + ".jsp");
+            view.setViewPage("BBS/bbs.jsp");
             return view;
         }
         return null;

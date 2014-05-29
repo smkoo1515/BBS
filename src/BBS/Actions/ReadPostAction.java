@@ -21,7 +21,7 @@ public class ReadPostAction extends BbsAction{
         Map<String, Object> postMap = new HashMap<>();
         postMap.put(postNumber, getPost(bbsName,postNumber));
         view.setModelMap(postMap);
-        view.setViewPage("/POST/readPost.jsp");
+        view.setViewPage("POST/readPost.jsp");
         return view;
     }
 

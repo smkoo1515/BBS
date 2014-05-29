@@ -26,7 +26,7 @@ public class EditPostAction extends BbsAction{
         postMap.put("bbsName", bbsName);
         postMap.put("post", post);
         view.setModelMap(postMap);
-        view.setViewPage("/POST/editPost.jsp");
+        view.setViewPage("POST/editPost.jsp");
         return view;
     }
 }
