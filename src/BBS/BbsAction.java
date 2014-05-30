@@ -58,16 +58,18 @@ public abstract class BbsAction {
     }
 
     //　SQLファイルを読む
-    private String readSQLfrom(String sqlFile) throws FileNotFoundException{
-        String sql = "";
+    private String[] readSQLfrom(String sqlFile) throws FileNotFoundException{
+        String[] sql;
+        String sqls = "";
         try(BufferedReader br = new BufferedReader(new FileReader(SQLPath + sqlFile))) {
             for(String line = br.readLine(); line != null; line = br.readLine()){
-                sql = sql + " " +  line;
+                sqls = sqls + " " +  line;
             }
         } catch (IOException e) {
             // TODO 自動生成された catch ブロック
             e.printStackTrace();
         }
+        sql = sqls.split(";");
         return sql;
     }
 
@@ -87,18 +89,21 @@ public abstract class BbsAction {
         if(conn != null){
             try {
                 //　SQLファイルを読み、置換して動的SQL文生成
-                String query = makeSql(readSQLfrom(fileName),sqlParams);
-                pstmt = conn.prepareStatement(query);
-                //　Select文チェック
-                if(query.toLowerCase().contains("select")){
-                    //　Select文実行
-                    rs = pstmt.executeQuery();
-                    //　結果獲得
-                    result = resultSetToArrayList(rs);
-                }else{
-                    //　Select文以外実行
-                    pstmt.executeUpdate(query);
+                for (String sql : readSQLfrom(fileName)){
+                    String query = makeSql(sql,sqlParams);
+                    pstmt = conn.prepareStatement(query);
+                 //　Select文チェック
+                    if(query.toLowerCase().contains("select")){
+                        //　Select文実行
+                        rs = pstmt.executeQuery();
+                        //　結果獲得
+                        result = resultSetToArrayList(rs);
+                    }else{
+                        //　Select文以外実行
+                        pstmt.executeUpdate(query);
+                    }
                 }
+
                 return true;
 
             } catch (FileNotFoundException e) {
